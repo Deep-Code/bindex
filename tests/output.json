@@ -1,0 +1,12 @@
+{
+  "parameters": {
+    "TestParam1": 16777130,
+    "TestParam2": "Test Comment Parameter\u0000\u0000"
+  },
+  "meta": {
+    "sha1": "7ed585388d7446778cd267b0330595c987de0302",
+    "analyzed_on": "2017.10.18:00.00.00",
+    "definition": "..\\tests\\test.config",
+    "target": "..\\tests\\input.bin"
+  }
+}
