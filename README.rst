@@ -36,7 +36,7 @@ Usage
 
 The script provides the following options from the command-line::
 
-    usage: D:/src/deepcode/bindex/bindex.py [-h] -i INPUT_FILE -d DEFINITION_FILE
+    usage: python ./bindex.py [-h] -i INPUT_FILE -d DEFINITION_FILE
                                         [-o OUTPUT_FILE] [-v] [-V]
 
 A more detailed description of the command-line options are provided below::
