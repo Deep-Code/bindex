@@ -21,14 +21,14 @@ from bindex.const import *
 from bindex.parameter import CompatibilityParameter
 from bindex.parameter import Parameter
 
-__author__ = "Jonathan Racicot"
-__copyright__ = "Copyright 2017, DeepCode"
-__credits__ = ["Jonathan Racicot"]
-__license__ = "MIT"
-__version__ = "0.2.0"
-__maintainer__ = "Jonathan Racicot"
-__email__ = "jon@deepcode.ca"
-__status__ = "Development"
+__author__ = metadata.authors[0]
+__copyright__ = metadata.copyright
+__version__ = metadata.version
+__license__ = metadata.license
+__credits__ = metadata.authors
+__maintainer__ = metadata.authors[0]
+__email__ = metadata.emails[0]
+__status__ = metadata.status
 
 logger = logging.getLogger(__name__)
 

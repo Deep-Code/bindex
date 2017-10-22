@@ -20,6 +20,15 @@ from bindex.files import DefinitionFile
 from bindex.files import TargetFile
 from bindex.parameter import Parameter
 
+__author__ = metadata.authors[0]
+__copyright__ = metadata.copyright
+__version__ = metadata.version
+__license__ = metadata.license
+__credits__ = metadata.authors
+__maintainer__ = metadata.authors[0]
+__email__ = metadata.emails[0]
+__status__ = metadata.status
+
 logger = logging.getLogger(__name__)
 
 
