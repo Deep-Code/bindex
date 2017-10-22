@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "analyzed_on": "2017.10.22:00.00.00",
+    "definition": ".\\examples\\win_pe\\win32pe.json",
+    "sha1": "dcabf4bba851e92d45e5a60390bb4eb2b1ef5fd4",
+    "target": "c:\\windows\\system32\\calc.exe"
+  },
+  "parameters": {
+    "checksum": 0,
+    "entryPoint": 0,
+    "headerSizeInParagraphs": 4,
+    "initialSP": 184,
+    "initialSS": 0,
+    "maxParaAllocatedMemory": 65535,
+    "minParaAllocatedMemory": 0,
+    "nbBytesLastPage": 144,
+    "nbRelocationEntries": 0,
+    "nbTotalPages": 3,
+    "overlayNumber": 0,
+    "relocationTableOffset": 64
+  }
+}

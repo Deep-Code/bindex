@@ -1,0 +1,103 @@
+{
+  "description": "Windows 64-bit Portable Executable",
+  "author": "Jonathan Racicot",
+  "version": "1.0",
+  "creation_date": "2017-10-22",
+  "compatibility": [
+    {
+      "name": "magicId",
+      "offset": 0,
+      "size": 2,
+      "type": "ascii",
+      "compatible_with": [
+        "MZ"
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "name": "nbBytesLastPage",
+      "offset": 0,
+      "size": 2,
+      "relative_to": "magicId",
+      "type": "H"
+    },
+    {
+      "name": "nbTotalPages",
+      "offset": 0,
+      "size": 2,
+      "relative_to": "nbBytesLastPage",
+      "type": "H"
+    },
+    {
+      "name": "nbRelocationEntries",
+      "offset": 0,
+      "size": 2,
+      "relative_to": "nbTotalPages",
+      "type": "H"
+    },
+    {
+      "name": "headerSizeInParagraphs",
+      "offset": 0,
+      "size": 2,
+      "relative_to": "nbRelocationEntries",
+      "type": "H"
+    },
+    {
+      "name": "minParaAllocatedMemory",
+      "offset": 0,
+      "size": 2,
+      "relative_to": "headerSizeInParagraphs",
+      "type": "H"
+    },
+    {
+      "name": "maxParaAllocatedMemory",
+      "offset": 0,
+      "size": 2,
+      "relative_to": "minParaAllocatedMemory",
+      "type": "H"
+    },
+    {
+      "name": "initialSS",
+      "offset": 0,
+      "size": 2,
+      "relative_to": "maxParaAllocatedMemory",
+      "type": "H"
+    },
+    {
+      "name": "initialSP",
+      "offset": 0,
+      "size": 2,
+      "relative_to": "initialSS",
+      "type": "H"
+    },
+    {
+      "name": "checksum",
+      "offset": 0,
+      "size": 2,
+      "relative_to": "initialSP",
+      "type": "H"
+    },
+    {
+      "name": "entryPoint",
+      "offset": 0,
+      "size": 4,
+      "relative_to": "checksum",
+      "type": "I"
+    },
+    {
+      "name": "relocationTableOffset",
+      "offset": 0,
+      "size": 2,
+      "relative_to": "entryPoint",
+      "type": "H"
+    },
+    {
+      "name": "overlayNumber",
+      "offset": 0,
+      "size": 2,
+      "relative_to": "relocationTableOffset",
+      "type": "H"
+    }
+  ]
+}
