@@ -118,6 +118,7 @@ URL: <{url}>
     logging.basicConfig(format=LOG_FORMAT,
                         level=logging_level)
 
+    logger.debug(os.getcwd())
     # Verify that the input file exists
     if not os.path.isfile(input_file):
         logger.error(MSG_ERROR_INPUT_FILE_NOT_FOUND.format(f=input_file))
@@ -146,9 +147,11 @@ URL: <{url}>
         result = extractor.extract()
 
         if result is not None:
-            with open(output_file, "w") as fp:
-                json.dump(result, fp, indent=4)
-
+            with open(output_file, "w+") as fp:
+                json.dump(result, fp, indent=4, sort_keys=True)
+            logger.info(MSG_INFO_FILE_SAVED.format(f=output_file))
+        else:
+            logger.info("No data extracted from '{f:s}'.".format(f=input_file))
     except Exception as e:
         logger.error(str(e))
         sys.exit(1)
