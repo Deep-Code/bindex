@@ -4,9 +4,9 @@
     bindex.extractor
     ~~~~~~~~~~~~~
 
-    A description which can be long and explain the complete
-    functionality of this module even with indented code examples.
-    Class/Function however should not be documented here.
+    The extractor module contains the engine of the application, which is
+    responsible to take in the target file, the definition file and outputting
+    the extracted data.
 
     :copyright: 2017, Jonathan Racicot, see AUTHORS for more details
     :license: MIT, see LICENSE for more details
@@ -34,6 +34,15 @@ logger = logging.getLogger(__name__)
 
 class Extractor():
     def __init__(self, _target_file, _definition_file):
+        """
+        Initiates an Extractor object using the given definition and target files.
+
+        This function does not initiate the extraction process. It merely creates
+        a TargetFile object and a DefinitionFile object, which validates some variables.
+
+        :param _target_file: The path to the target file.
+        :param _definition_file: The path to the definition file.
+        """
         assert os.path.isfile(_target_file)
         assert os.path.isfile(_definition_file)
 
@@ -67,14 +76,31 @@ class Extractor():
         return str(self.__target)
 
     def is_compatible(self):
+        """
+        Verifies if the definition file given to the extractor is compatible
+        with the target file.
+
+        This function will read the parameters in the "compatibility" section
+        of the definition file and extract the values of these parameters. It will
+        then compare the values extracted with the values defined in the "compatible_with"
+        property.
+
+        :return: True if all the values extracted are compatible with the definition file,
+        False otherwise.
+        """
         parameters = self.__definition.compatibility
+
         for parameter_name in parameters:
             try:
+                # Obtain the parameter object from the compatibility parameters.
                 parameter = parameters[parameter_name]
+                # Calculates the absolute offset of the parameter within the target file.
                 absolute_offset = self.__get_absolute_offset(parameter)
+                # Reads the value at the given offset.
                 value = self.__target.read(parameter, absolute_offset)
+                # Check if the value is compatible with the definition file
                 if not parameter.is_compatible(value):
-                    logger.error("Parameter '{param:s}' is not compatible with target file:".format(
+                    logger.error(MSG_ERROR_PARAM_NOT_COMPATIBLE.format(
                         param=parameter_name))
                     logger.error("\tValue from target: {vt:s}.".format(vt=str(value)))
                     logger.error("\tCompatible with: {valid:s}.".format(
@@ -100,8 +126,8 @@ class Extractor():
         values = {}
         # Initiate the result dictionary with metadata to identify
         # the analysis.
-        now_date = datetime.date.today().strftime("%Y.%m.%d")
-        now_time = datetime.time().strftime("%H.%M.%S")
+        now_date = datetime.date.today().strftime(RESULT_DATE_FMT)
+        now_time = datetime.time().strftime(RESULT_TIME_FMT)
         result = {
             PARAM_METADATA: {
                 PARAM_DEF_FILE: self.definition,
@@ -136,7 +162,7 @@ class Extractor():
                     ))
                 except Exception as e:
                     value = ERROR_VALUE
-                    logger.error("Failed to extract parameter '{param:s}': {err:s}".format(
+                    logger.error(MSG_ERROR_FAILED_READ_PARAM.format(
                         param=str(parameter),
                         err=str(e)))
                 # Store the result into the values parameter.
