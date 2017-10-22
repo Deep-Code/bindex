@@ -15,4 +15,5 @@ authors_string = ', '.join(authors)
 emails = ['jon@deepcode.ca']
 license = 'MIT'
 copyright = '2017 ' + authors_string
+status = "Development"
 url = 'https://www.deepcode.ca/'
