@@ -2,9 +2,6 @@
 Bindex - Binary Data Extraction Tool
 ====================================
 
-.. image:: https://travis-ci.org/seanfisk/python-project-template.png
-:target: https://travis-ci.org/seanfisk/python-project-template
-
 This application is designed to extract binary data from various types of binary files based on rules defined in
 a definition file. The objective of Bindex is to provide a customisable way to extract data from configuration files,
 memory dumps or other files without creating a new script for each type of file analyzed. Bindex will take a
@@ -16,6 +13,8 @@ To use the script, execute the following command::
 
 Installation
 ============
+
+This section will describe how to install the Bindex module.
 
 Using Pip
 ---------
@@ -37,7 +36,28 @@ Usage
 
 The script provides the following options from the command-line::
 
-        usage
+    usage: D:/src/deepcode/bindex/bindex.py [-h] -i INPUT_FILE -d DEFINITION_FILE
+                                        [-o OUTPUT_FILE] [-v] [-V]
+
+A more detailed description of the command-line options are provided below::
+
+    usage: python ./bindex.py [-h] -i INPUT_FILE -d DEFINITION_FILE
+                                            [-o OUTPUT_FILE] [-v] [-V]
+
+    Binary data extractor using external definition files. Designed for Reverse Engineering (RE) purposes.
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -i INPUT_FILE, --input-file INPUT_FILE
+                            Target file from which data will be extracted.
+      -d DEFINITION_FILE, --definition-file DEFINITION_FILE
+                            File definition the items to extract along with their
+                            positions.
+      -o OUTPUT_FILE, --output-file OUTPUT_FILE
+                            Name of the file to contain the JSON-formatted
+                            results.
+      -v, --verbose         Display additional information about execution.
+      -V, --version         show program's version number and exit
 
 Definition Files
 ================
@@ -141,7 +161,9 @@ indicates that the target file will be properly parsed by the current definition
 read the value or extracts a value for the parameters that is not in the list of compatible values, the program will
 exit. In order to skip a compatibility check, simply move these parameters into the "parameters" section.
 
-Authors
-=======
+Author
+======
+
+Developed by Jonathan Racicot, from DeepCode_. October 2017.
 
 .. _DeepCode: https://www.deepcode.ca
