@@ -10,14 +10,16 @@
     :copyright: 2017, Jonathan Racicot, see AUTHORS for more details
     :license: MIT, see LICENSE for more details
 """
-__author__ = "Jonathan Racicot"
-__copyright__ = "Copyright 2017, DeepCode"
-__credits__ = ["Jonathan Racicot"]
-__license__ = "MIT"
-__version__ = "0.2.0"
-__maintainer__ = "Jonathan Racicot"
-__email__ = "jon@deepcode.ca"
-__status__ = "Development"
+from bindex import metadata
+
+__author__ = metadata.authors[0]
+__copyright__ = metadata.copyright
+__version__ = metadata.version
+__license__ = metadata.license
+__credits__ = metadata.authors
+__maintainer__ = metadata.authors[0]
+__email__ = metadata.emails[0]
+__status__ = metadata.status
 
 #
 # In order to avoid modifying the remainder of the application, do not
@@ -30,6 +32,8 @@ NO_VALUE = None
 ERROR_VALUE = "Error!"
 LOG_FORMAT = "[%(asctime)s] %(levelname)s - %(message)s"
 DATETIME_STAMP = "{cdate:s}:{ctime:s}"
+RESULT_DATE_FMT = "%Y.%m.%d"
+RESULT_TIME_FMT = "%H.%M.%S"
 
 PARAM_METADATA = "meta"
 PARAM_META_AUTHOR = "author"
@@ -86,8 +90,10 @@ TYPE_UTF16 = "utf-16"
 TYPE_STRING = [TYPE_ASCII, TYPE_UTF8, TYPE_UTF16]
 
 ASK_OUTPUT_OVERWRITE = "The chosen output file already exists, overwrite it? [Y/n]"
+MSG_INFO_FILE_SAVED = "Saved extracted data to '{f:s}'."
 MSG_INFO_LOADING_DEF_FILE = "Loading definition file from '{f:s}'..."
 MSG_INFO_EXTRACTION_COMPLETE = "Extraction completed."
+MSG_ERROR_FAILED_READ_PARAM = "Failed to extract parameter '{param:s}': {err:s}"
 MSG_ERROR_INCOMPLETE_PARAM = "Missing mandatory properties in parameters. Cannot parse into object."
 MSG_ERROR_READ_PARAM = "Failed to read parameter '{param:s}'."
 MSG_ERROR_INPUT_FILE_NOT_FOUND = "Could not find the input file: '{f:s}'."
@@ -95,3 +101,4 @@ MSG_ERROR_DEF_FILE_NOT_FOUND = "Could not find the definition file: '{f:s}'."
 MSG_ERROR_NOT_COMPATIBLE = "Definition file is not compatible with target file."
 MSG_ERROR_OUTPUT_FILE_EXISTS = "Output file with similar name exists."
 MSG_ERROR_NO_DATA_EXTRACTED = "No data was extracted from '{f:s}'."
+MSG_ERROR_PARAM_NOT_COMPATIBLE = "Parameter '{param:s}' is not compatible with target file:"
