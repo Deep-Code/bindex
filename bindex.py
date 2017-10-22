@@ -17,9 +17,17 @@ import logging
 import os
 import sys
 
-from bindex import metadata
 from bindex.const import *
 from bindex.extractor import Extractor
+
+__author__ = metadata.authors[0]
+__copyright__ = metadata.copyright
+__version__ = metadata.version
+__license__ = metadata.license
+__credits__ = metadata.authors
+__maintainer__ = metadata.authors[0]
+__email__ = metadata.emails[0]
+__status__ = metadata.status
 
 logger = logging.getLogger(__name__)
 
@@ -124,12 +132,12 @@ URL: <{url}>
         if overwrite != "Y":
             logger.warning(MSG_ERROR_OUTPUT_FILE_EXISTS)
             sys.exit(1)
-            #
-            # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+    #
+    # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-            # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-            # Program Execution
-            #
+    # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+    # Program Execution
+    #
     try:
         extractor = Extractor(
             _target_file=input_file,
