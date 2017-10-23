@@ -4,9 +4,8 @@
     bindex.files
     ~~~~~~~~~~~~~
 
-    A description which can be long and explain the complete
-    functionality of this module even with indented code examples.
-    Class/Function however should not be documented here.
+    This module includes objects encapsulating the different files reuquired
+    for extraction, namely the target and definition files.
 
     :copyright: 2017, Jonathan Racicot, see AUTHORS for more details
     :license: MIT, see LICENSE for more details
