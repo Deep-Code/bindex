@@ -2,6 +2,8 @@
 Bindex - Binary Data Extraction Tool
 ====================================
 
+.. image:: https://travis-ci.org/Deep-Code/bindex.svg?branch=master
+
 This application is designed to extract binary data from various types of binary files based on rules defined in
 a definition file. The objective of Bindex is to provide a customisable way to extract data from configuration files,
 memory dumps or other files without creating a new script for each type of file analyzed. Bindex will take a
