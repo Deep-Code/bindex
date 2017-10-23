@@ -11,6 +11,7 @@
     :copyright: 2017, Jonathan Racicot, see AUTHORS for more details
     :license: MIT, see LICENSE for more details
 """
+import os
 import unittest
 
 from bindex.const import *
@@ -19,8 +20,9 @@ from bindex.extractor import Extractor
 
 class TestMain(unittest.TestCase):
     def test_extractor_create(self):
-        df = "test.config"
-        tf = "input.bin"
+        basedir = os.getcwd()
+        tf = os.path.join(basedir, "tests", "input.bin")
+        df = os.path.join(basedir, "tests", "test.config")
         extractor = Extractor(
             _definition_file=df,
             _target_file=tf
@@ -30,8 +32,9 @@ class TestMain(unittest.TestCase):
         assert extractor.target == tf
 
     def test_extractor_is_compatible(self):
-        df = "test.config"
-        tf = "input.bin"
+        basedir = os.getcwd()
+        tf = os.path.join(basedir, "tests", "input.bin")
+        df = os.path.join(basedir, "tests", "test.config")
         extractor = Extractor(
             _definition_file=df,
             _target_file=tf
@@ -40,8 +43,9 @@ class TestMain(unittest.TestCase):
         assert extractor.is_compatible()
 
     def test_extractor_parameters(self):
-        df = "test.config"
-        tf = "input.bin"
+        basedir = os.getcwd()
+        tf = os.path.join(basedir, "tests", "input.bin")
+        df = os.path.join(basedir, "tests", "test.config")
         extractor = Extractor(
             _definition_file=df,
             _target_file=tf

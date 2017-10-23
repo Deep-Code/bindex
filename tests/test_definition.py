@@ -11,6 +11,7 @@
     :copyright: 2017, Jonathan Racicot, see AUTHORS for more details
     :license: MIT, see LICENSE for more details
 """
+import os
 import unittest
 
 from bindex.const import *
@@ -19,12 +20,15 @@ from bindex.files import DefinitionFile
 
 class TestMain(unittest.TestCase):
     def test_create_definition_file(self):
-        test_file = "test.config"
+        basedir = os.getcwd()
+        test_file = os.path.join(basedir, "tests", "test.config")
+
         definition_file = DefinitionFile(test_file)
         assert definition_file.file == test_file
 
     def test_load_definition_file_params(self):
-        test_file = "test.config"
+        basedir = os.getcwd()
+        test_file = os.path.join(basedir, "tests", "test.config")
         pn1 = "TestParam1"
         po1 = 0
         ps1 = 4
@@ -62,7 +66,8 @@ class TestMain(unittest.TestCase):
         assert p2.relative_to == pr2
 
     def test_load_definition_file_comp_params(self):
-        test_file = "test.config"
+        basedir = os.getcwd()
+        test_file = os.path.join(basedir, "tests", "test.config")
         pn1 = "manufacturer"
         po1 = 0
         ps1 = 10
@@ -100,7 +105,8 @@ class TestMain(unittest.TestCase):
         assert p2.relative_to == pr2
 
     def test_is_compatible_with_comp_param(self):
-        test_file = "test.config"
+        basedir = os.getcwd()
+        test_file = os.path.join(basedir, "tests", "test.config")
         pn2 = "version"
         vcomp = "1.09.145"
 
@@ -112,7 +118,8 @@ class TestMain(unittest.TestCase):
         assert pa.is_compatible(vcomp)
 
     def test_is_not_compatible_with_comp_param(self):
-        test_file = "test.config"
+        basedir = os.getcwd()
+        test_file = os.path.join(basedir, "tests", "test.config")
         pn2 = "version"
         vcomp = "1.10.001"
 
@@ -124,7 +131,8 @@ class TestMain(unittest.TestCase):
         assert not pa.is_compatible(vcomp)
 
     def test_related_parameter(self):
-        test_file = "test.config"
+        basedir = os.getcwd()
+        test_file = os.path.join(basedir, "tests", "test.config")
         pname = "version"
         definition_file = DefinitionFile(test_file)
         assert pname in definition_file.compatibility.keys()
@@ -134,7 +142,8 @@ class TestMain(unittest.TestCase):
         assert parent.name == "manufacturer"
 
     def test_no_related_parameter(self):
-        test_file = "test.config"
+        basedir = os.getcwd()
+        test_file = os.path.join(basedir, "tests", "test.config")
         pname = "manufacturer"
         definition_file = DefinitionFile(test_file)
         assert pname in definition_file.compatibility.keys()

@@ -11,6 +11,7 @@
     :copyright: 2017, Jonathan Racicot, see AUTHORS for more details
     :license: MIT, see LICENSE for more details
 """
+import os
 import unittest
 
 from bindex.files import TargetFile
@@ -19,12 +20,14 @@ from bindex.parameter import CompatibilityParameter
 
 class TestMain(unittest.TestCase):
     def test_create_target_file(self):
-        test_file = "input.bin"
+        basedir = os.getcwd()
+        test_file = os.path.join(basedir, "tests", "input.bin")
         tf = TargetFile(test_file)
         assert tf.file == test_file
 
     def test_read_parameter_target_file(self):
-        test_file = "input.bin"
+        basedir = os.getcwd()
+        test_file = os.path.join(basedir, "tests", "input.bin")
         tf = TargetFile(test_file)
 
         cvalue = "DeepCode"
