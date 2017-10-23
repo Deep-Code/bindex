@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 """
-    package.module
+    bindex.tests
     ~~~~~~~~~~~~~
 
     A description which can be long and explain the complete
