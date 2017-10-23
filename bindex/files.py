@@ -15,7 +15,9 @@ import hashlib
 import json
 import logging
 import os
+import re
 import struct
+import unicodedata
 
 from bindex.const import *
 from bindex.parameter import CompatibilityParameter
@@ -40,7 +42,7 @@ class AbstractFile(object):
 
     def __repr__(self):
         s = ABSTRACT_FILE_REPR.format(
-            f=self.file
+            f=self.__file
         )
         return s
 
@@ -85,7 +87,7 @@ class DefinitionFile(AbstractFile):
         :return: A string representation of the DefinitionFile object.
         """
         s = DEFINITION_FILE_REPR.format(
-            f=self.file
+            f=super().file
         )
         return s
 
@@ -301,12 +303,20 @@ class TargetFile(AbstractFile):
         self.__base_offset = _base
         self.__fp = None
 
+        # Build lists of non-printable Unicode characters
+        # Ref. https://stackoverflow.com/questions/92438/stripping-non-printable-characters-from-a-string-in-python
+        # Adapted for Python 3
+        all_chars = (chr(i) for i in range(0x110000))
+        control_chars = ''.join(c for c in all_chars if unicodedata.category(c) == 'Cc')
+        self.__remove_non_printable_chars = True
+        self.__re_non_printable_chars = re.compile('[{:s}]'.format(re.escape(control_chars)))
+
     def __repr__(self):
         """
         Returns a string representation of the object.
-        :return: A string representatin of the object.
+        :return: A string representation of the object.
         """
-        return TARGET_FILE_REPR.format(f=self.file)
+        return TARGET_FILE_REPR.format(f=super().file)
 
     def __str__(self):
         """
@@ -366,6 +376,8 @@ class TargetFile(AbstractFile):
             # Convert string values
             if _parameter.type in TYPE_STRING:
                 value = value.decode(_parameter.type).strip()
+                if self.__remove_non_printable_chars:
+                    value = self.__re_non_printable_chars.sub('', value)
             # Convert numeric values.
             else:
                 value = struct.unpack(_parameter.type, value)[0]
