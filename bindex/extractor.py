@@ -32,7 +32,7 @@ __status__ = metadata.status
 logger = logging.getLogger(__name__)
 
 
-class Extractor():
+class Extractor(object):
     def __init__(self, _target_file, _definition_file):
         """
         Initiates an Extractor object using the given definition and target files.
@@ -55,8 +55,8 @@ class Extractor():
 
     def __repr__(self):
         return EXTRACTOR_REPR.format(
-            df=str(self.definition),
-            tf=str(self.target)
+            df=self.definition,
+            tf=self.target
         )
 
     @property
